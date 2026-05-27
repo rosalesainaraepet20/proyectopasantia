@@ -9,7 +9,7 @@ if(!isset($_SESSION['usuario'])){
 
 class Database {
 
-    private $host = "10.0.11.153";
+    private $host = "localhost";
     private $dbname = "sistema_php";
     private $user = "root";
     private $pass = "";
