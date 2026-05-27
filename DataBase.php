@@ -1,8 +1,15 @@
 <?php
 
+session_start();
+
+if(!isset($_SESSION['usuario'])){
+
+    header("Location: login.php");
+}
+
 class Database {
 
-    private $host = "localhost";
+    private $host = "10.0.11.153";
     private $dbname = "sistema_php";
     private $user = "root";
     private $pass = "";
