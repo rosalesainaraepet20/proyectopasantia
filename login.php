@@ -31,7 +31,7 @@ if($_POST){
 <meta charset="UTF-8">
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
+<link rel="stylesheet" href="css/style.css">
 <title>Login</title>
 
 </head>
@@ -54,7 +54,9 @@ if($_POST){
 <button class="btn btn-success">
     Ingresar
 </button>
-
+<a href="registro.php" class="btn btn-secondary ms-2">
+    Registrar
+</a>
 </form>
 
 </body>

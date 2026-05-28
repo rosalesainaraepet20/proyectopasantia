@@ -12,7 +12,8 @@ class Producto {
         $this->conexion = $db->conectar();
     }
 
-    public function listar() {
+    // LISTAR
+    public function obtenerProductos() {
 
         $sql = "SELECT * FROM productos";
 
@@ -23,19 +24,67 @@ class Producto {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function agregar($nombre,$descripcion,$precio,$stock){
+    // AGREGAR
+    public function agregar($nombre, $descripcion, $precio, $stock) {
 
-        $sql = "INSERT INTO productos(nombre,descripcion,precio,stock)
-                VALUES(:nombre,:descripcion,:precio,:stock)";
+        $sql = "INSERT INTO productos(nombre, descripcion, precio, stock)
+                VALUES(:nombre, :descripcion, :precio, :stock)";
 
         $stmt = $this->conexion->prepare($sql);
 
-        $stmt->bindParam(":nombre",$nombre);
-        $stmt->bindParam(":descripcion",$descripcion);
-        $stmt->bindParam(":precio",$precio);
-        $stmt->bindParam(":stock",$stock);
+        $stmt->bindParam(":nombre", $nombre);
+        $stmt->bindParam(":descripcion", $descripcion);
+        $stmt->bindParam(":precio", $precio);
+        $stmt->bindParam(":stock", $stock);
 
         return $stmt->execute();
     }
+
+    // OBTENER UN PRODUCTO
+    public function obtenerProducto($id){
+
+        $sql = "SELECT * FROM productos WHERE id = :id";
+
+        $stmt = $this->conexion->prepare($sql);
+
+        $stmt->bindParam(":id", $id);
+
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    // EDITAR
+    public function editar($id, $nombre, $descripcion, $precio, $stock){
+
+        $sql = "UPDATE productos
+                SET nombre = :nombre,
+                    descripcion = :descripcion,
+                    precio = :precio,
+                    stock = :stock
+                WHERE id = :id";
+
+        $stmt = $this->conexion->prepare($sql);
+
+        $stmt->bindParam(":id", $id);
+        $stmt->bindParam(":nombre", $nombre);
+        $stmt->bindParam(":descripcion", $descripcion);
+        $stmt->bindParam(":precio", $precio);
+        $stmt->bindParam(":stock", $stock);
+
+        return $stmt->execute();
+    }
+    // ELIMINAR
+public function eliminar($id){
+
+    $sql = "DELETE FROM productos WHERE id = :id";
+
+    $stmt = $this->conexion->prepare($sql);
+
+    $stmt->bindParam(":id", $id);
+
+    return $stmt->execute();
 }
+}
+
 ?>
