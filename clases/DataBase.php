@@ -1,12 +1,5 @@
 <?php
 
-session_start();
-
-if(!isset($_SESSION['usuario'])){
-
-    header("Location: login.php");
-}
-
 class Database {
 
     private $host = "localhost";
@@ -35,4 +28,5 @@ class Database {
         }
     }
 }
+
 ?>
