@@ -17,14 +17,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $_POST['password']
     );
 
-    if($resultado){
+if($resultado){
 
-        $mensaje = "Usuario registrado correctamente";
+    // Redirecciona al login
+    header("Location: login.php");
+    exit;
 
-    } else {
+} else {
 
-        $mensaje = "Error al registrar";
-    }
+    $mensaje = "Error al registrar";
+}
 }
 ?>
 
